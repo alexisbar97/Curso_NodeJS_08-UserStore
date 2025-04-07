@@ -1,16 +1,28 @@
 import { UserModel } from "../../data";
-import { CustomError, RegisterUserDto } from "../../domain";
+import { CustomError, RegisterUserDto, UserEntity } from "../../domain";
 
 export class AuthService {
     constructor() {}
 
     public async registerUser(registerUserDto: RegisterUserDto) {
-        const existeUser = await UserModel.findOne({ email: registerUserDto.email });
+        const existUser = await UserModel.findOne({ email: registerUserDto.email });
 
-        if (existeUser) {
+        if (existUser) {
             throw CustomError.badRequest('Email already exists.');
         }
 
-        return 'Todo OK.'
+        try {
+            const user = new UserModel(registerUserDto);
+            await user.save();
+
+            const {password, ...userEntity} = UserEntity.fromObject(user);
+
+            return {
+                user: userEntity,
+                token: 'ABC'
+            };
+        } catch (error) {
+            throw CustomError.internalServer(`${error}`);
+        }
     }
 }
