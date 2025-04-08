@@ -1,14 +1,9 @@
-# Rest Project + TypeScript
+# Instrucciones de Uso
 
-Este proyecto previamente inicializado tiene todo lo necesario para trabajar con TypeScript, Express y Rest.
-
-Cada paso de su configuración ya se ha realizado previamente en el curso, por lo que solo es necesario clonar el proyecto y comenzar a trabajar.
-
-
-## Instalación
-
-1. Clonar .env.template a .env y configurar las variables de entorno
-2. Ejecutar `npm install` para instalar las dependencias
-3. En caso de necesitar base de datos, configurar el docker-compose.yml y ejecutar `docker-compose up -d` para levantar los servicios deseados.
-4. Ejecutar `npm run dev` para levantar el proyecto en modo desarrollo
-
+1. Clonar el repositorio ```git clone https://github.com/alexisbar97/Curso_NodeJS_08-UserStore.git```.
+2. Navegar a la carpeta del proyecto ```cd nombre-carpeta-proyecto```.
+3. Ejecutar ```npm install``` para instalar dependencias y paquetes especificados en el archivo 'package.json'.
+4. Renombrar el archivo '.env.template' a '.env'.
+5. Configurar las variables de entorno.
+6. Ejecutar el comando ```docker compose up -d``` para desplegar y ejecutar en segundo plano los servicios definidos en el archivo 'docker-compose.yml'.
+7. Ejecutar ```npm run dev```.

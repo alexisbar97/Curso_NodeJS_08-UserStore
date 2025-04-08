@@ -17,6 +17,7 @@ export class JwtAdapter {
     }
 
     static valuidateToken(token: string) {
-        
+        throw new Error('Method not implemented.');
+        return;
     }
 }
