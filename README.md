@@ -5,5 +5,5 @@
 3. Ejecutar ```npm install``` para instalar dependencias y paquetes especificados en el archivo 'package.json'.
 4. Renombrar el archivo '.env.template' a '.env'.
 5. Configurar las variables de entorno.
-6. Ejecutar el comando ```docker compose up -d``` para desplegar y ejecutar en segundo plano los servicios definidos en el archivo 'docker-compose.yml'.
+6. Ejecutar ```docker compose up -d``` para desplegar y ejecutar en segundo plano los servicios definidos en el archivo 'docker-compose.yml'.
 7. Ejecutar ```npm run dev```.
