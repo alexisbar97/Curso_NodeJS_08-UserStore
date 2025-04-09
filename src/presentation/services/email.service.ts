@@ -33,7 +33,6 @@ export class EmailService {
     const { to, subject, htmlBody, attachements = [] } = options;
 
     try {
-
       const sentInformation = await this.transporter.sendMail( {
         to: to,
         subject: subject,
@@ -45,6 +44,7 @@ export class EmailService {
 
       return true;
     } catch ( error ) {
+      // console.log( error );
       return false;
     }
   }

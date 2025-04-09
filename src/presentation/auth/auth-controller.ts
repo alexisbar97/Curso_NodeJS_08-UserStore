@@ -48,7 +48,5 @@ export class AuthController {
             .then(() => res.json('Email Validated.'))
             .catch((error) => this.handleError(error, res));
         ;
-
-        res.json('validateEmail');
     };
 }

@@ -23,7 +23,7 @@ export class AuthService {
             await user.save();
 
             // Email de Confirmación
-            this.sendEmailValidationLink(user.email);
+            await this.sendEmailValidationLink(user.email);
             const {password, ...userEntity} = UserEntity.fromObject(user);
             const token = await JwtAdapter.generateToken({id: user.id});
 
@@ -86,11 +86,36 @@ export class AuthService {
             htmlBody: html
         }
 
-        const isSet = await this.emailService.sendEmail(options);
+        const isSent = await this.emailService.sendEmail(options);
 
-        if(!isSet) {
+        if(!isSent) {
             throw CustomError.internalServer('Error sending email.');
         }
+
+        return true;
+    }
+
+    public validateEmail = async (token: string) => {
+        const payload = await JwtAdapter.validateToken(token);
+
+        if(!payload) {
+            throw CustomError.unauthorized('Invalid token.');
+        }
+
+        const { email } = payload as { email: string };
+
+        if (!email) {
+            throw CustomError.internalServer('Error validating email.');
+        }
+
+        const user = await UserModel.findOne({ email });
+
+        if(!user) {
+            throw CustomError.internalServer('Email not found.');
+        }
+
+        user.emailValidated = true;
+        await user.save();
 
         return true;
     }
