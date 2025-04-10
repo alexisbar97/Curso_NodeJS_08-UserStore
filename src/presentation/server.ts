@@ -26,11 +26,9 @@ export class Server {
   
   
   async start() {
-    
-
     //* Middlewares
-    this.app.use( express.json() ); // raw
-    this.app.use( express.urlencoded({ extended: true }) ); // x-www-form-urlencoded
+    this.app.use( express.json() );                               // raw
+    this.app.use( express.urlencoded({ extended: true }) );       // x-www-form-urlencoded
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );
@@ -38,7 +36,7 @@ export class Server {
     //* Routes
     this.app.use( this.routes );
 
-    //* SPA /^\/(?!api).*/  <== Únicamente si no empieza con la palabra api
+    //* SPA
     this.app.get('*', (req, res) => {
       const indexPath = path.join( __dirname + `../../../${ this.publicPath }/index.html` );
       res.sendFile(indexPath);
