@@ -7,7 +7,6 @@ interface Options {
   public_path?: string;
 }
 
-
 export class Server {
 
   public readonly app = express();
@@ -23,8 +22,6 @@ export class Server {
     this.routes = routes;
   }
 
-  
-  
   async start() {
     //* Middlewares
     this.app.use( express.json() );                               // raw
@@ -42,7 +39,6 @@ export class Server {
       res.sendFile(indexPath);
     });
     
-
     this.serverListener = this.app.listen(this.port, () => {
       console.log(`Server running on port ${ this.port }`);
     });
