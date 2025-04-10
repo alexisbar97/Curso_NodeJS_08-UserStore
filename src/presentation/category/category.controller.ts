@@ -38,11 +38,9 @@ export class CategoryController {
             return res.status(400).json({ error });
         }
 
-        res.json(req.query);
-
-        // this.categoryService.getCategories()
-        //     .then((categories) => res.json(categories))
-        //     .catch((error) => this.handleError(error, res))
-        // ;
+        this.categoryService.getCategories(paginationDto!)
+            .then((categories) => res.json(categories))
+            .catch((error) => this.handleError(error, res))
+        ;
     }
 }
